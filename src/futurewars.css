@@ -1,0 +1,83 @@
+@import url('https://fonts.googleapis.com/css?family=Saira+Extra+Condensed');
+
+.console {
+    width: 100%;
+}
+
+body {
+  background-color: #333;
+  font-family: "Saira Extra Condensed", sans-serif;
+  text-transform: uppercase;
+  color: #fff;
+  padding: 15px;
+}
+
+.player-item {
+    display: flex;
+    flex-direction: row;
+    width: 400px;
+}
+
+.player-credits, .player-turns, .player-exp {
+  font-size: 2em;
+  margin: 5px;   
+}
+
+.user-stats {
+   position: absolute;
+   top: 0;
+   right: 0;
+    display: flex;
+  flex-direction: row;
+}
+
+.port-display {
+    display: flex;
+    flex-direction: row;
+    border-width: 1px;
+    border-color: #fff;
+    border-style: solid;
+    padding: 10px;
+    width: 200px;
+}
+
+.port-name {
+  padding: 5px;
+}
+
+.port-class {
+  padding: 5px;
+}
+
+.port-trades {
+  padding: 5px;
+}
+
+.warp-links {
+    display: flex;
+    flex-direction: row;
+}
+
+.warp-item {
+    padding: 10px;
+}
+
+.player-name, .player-ship-type, .player-rank {
+    padding: 5px;
+}
+
+.move-screen {
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 500px;
+    height: 500px;
+    margin-top: -250px; /* Half the height */
+    margin-left: -250px; /* Half the width */
+    border-width: 1px;
+    border-color: #fff;
+    border-style: solid;
+    padding-left: auto;
+    background-color: #000;
+    padding: 5px;
+}
