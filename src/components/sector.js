@@ -1,4 +1,9 @@
 import React from 'react';
+import ore from '../assets/ore.png';
+import organics from '../assets/organics.png';
+import equipment from '../assets/equipment.png';
+import rank from '../assets/rank.png';
+import fighter from '../assets/fighter.png';
 
 export const Players = (props) => {
     if (!props.players) {
@@ -6,13 +11,19 @@ export const Players = (props) => {
     }
     return props.players.map((player) => (
         <div class="player-item">
-        <div class="player-rank">{player.rank}</div>
+        <div className="player-avatar"></div>
+        <div class="player-rank">
+          <img src = {rank} className="player-rank-icon" />
+          {player.rank}</div>
           <div class="player-name">{player.name}</div>
-          <div class="player-ship-type">{player.ship_type}</div>
-          <div class="player-fighters">
+          <div class="player-ship-name">{player.ship_name}</div>
+          <div class="player-ship-type">{player.ship_type}
+        <div class="player-fighters">
+            <img src = {fighter} className="fighter-icon"/>
             <div class="player-fighter-count">{player.fighters}</div> 
           fighters
           </div>
+        </div>
         </div>
     ));
 }
@@ -24,7 +35,7 @@ export const Warps = (props) => {
     }
 
 return (<div className="warp-links">
-    {props.warps.map((warp) => (<div class="warp-item" onClick={(_) => props.warp_function(warp)}>{warp}</div>))}
+    {props.warps.map((warp) => (<div class="round-warp-item" onClick={(_) => props.warp_function(warp.warp)}>{warp.warp}</div>))}
     </div>)
 }
 
@@ -35,9 +46,13 @@ export const Port = (props) => {
     }
 
     return (<div className="port-display">
-      <div className="port-class">Class {props.port.port_class}</div>
       <div className="port-name">{props.port.name}</div>
-      <div className="port-trade-string">({props.port.trades})</div>
+      <div className="port-class">Class {props.port.port_class}</div>
+      <div className="port-trade-string">
+        <img src = {ore} class="port-trades-ore" />
+        <img src = {organics} class="port-trades-organics" />
+        <img src = {equipment} class="port-trades-equipment" />
+      </div>
     </div>)
 }
 

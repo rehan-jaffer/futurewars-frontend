@@ -1,52 +1,80 @@
 @import url('https://fonts.googleapis.com/css?family=Saira+Extra+Condensed');
 
-.console {
-    width: 100%;
-}
 
 body {
   background-color: #333;
   font-family: "Saira Extra Condensed", sans-serif;
   text-transform: uppercase;
   color: #fff;
-  padding: 15px;
+  padding: 50px;
 }
 
 .player-item {
     display: flex;
     flex-direction: row;
-    width: 400px;
+    align-items: center;
+    width: 800px;
+    font-size: 1.2em;
+    background-color: #444;
+    padding: 10px;
+}
+
+.player-fighter-count {
+    display: inline;
+    margin: 5px;
+}
+
+.player-fighters {
+    font-size: 0.8em;
+}
+
+.fighter-icon {
+    width: 16px;
 }
 
 .player-credits, .player-turns, .player-exp {
-  font-size: 2em;
-  margin: 5px;   
+  font-size: 1.5em;
+  margin: 10px; 
+  margin-bottom: 0;  
 }
 
 .user-stats {
    position: absolute;
    top: 0;
    right: 0;
-    display: flex;
+  display: flex;
   flex-direction: row;
+  justify-content: flex-end;
+  background-color: #000;
+  width: 100%;
+  z-index: -1;
+  border: 0;
+  border-bottom-width: 1px;
+  border-style: solid;
+  border-color: #555;
 }
 
 .port-display {
     display: flex;
     flex-direction: row;
-    border-width: 1px;
+    border-width: 0px;
     border-color: #fff;
     border-style: solid;
+    border-radius: 15px;
     padding: 10px;
-    width: 200px;
+    background-color: #222;
+    width: 400px;
 }
 
 .port-name {
+    font-size: 2em;
   padding: 5px;
 }
 
 .port-class {
   padding: 5px;
+  color: lightblue;
+  font-weight: bold;
 }
 
 .port-trades {
@@ -63,10 +91,16 @@ body {
 }
 
 .player-name, .player-ship-type, .player-rank {
-    padding: 5px;
+    padding: 15px;
 }
 
-.move-screen {
+.player-name {
+}
+
+.player-rank {
+}
+
+.screen {
     position: absolute;
     top: 50%;
     left: 50%;
@@ -78,6 +112,267 @@ body {
     border-color: #fff;
     border-style: solid;
     padding-left: auto;
-    background-color: #000;
+    background-color: #111;
+    padding: 5px;
+    text-align: center;
+}
+
+.port-name-title {
+    margin: auto;
+    width: 100%;
+    text-align: center;
+    border: 0;
+    border-bottom-width: 1px;
+    border-style: solid;
+    border-color: #fff;
+    font-size: 3em;
+    font-weight: normal;
+}
+
+.player-stats-icon {
+  width: 64px;
+}
+
+.port-action-trade {
+  color: green;
+  border-width: 4px;
+  border-style: solid;
+  border-color: green;
+  text-align: center;
+  width: 60%;
+  margin: auto;
+  margin-bottom: 10px;
+  font-size: 1.5em;
+}
+
+.port-action-attack {
+  color: red;
+  border-width: 4px;
+  border-style: solid;
+  border-color: red;
+  text-align: center;
+  margin: 10px;
+  width: 60%;
+  margin: auto;
+  font-size: 1.5em;
+}
+
+.move-screen-warps {
+    display: flex;
+    flex-direction: row;
+    margin-left: auto;
+    margin-right: auto;
+    max-width: 80%;
+    flex-wrap: wrap;
+}
+
+.move-screen-warp-item {
+  padding: 10px;
+  border-width: 2px;
+  border-color: #fff;
+  border-style: solid;
+  margin: 5px;
+  font-size: 1.5em;
+}
+
+.round-warp-item {
+    padding: 10px;
+    border-width: 2px;
+    border-color: #fff;
+    border-style: solid;
+    margin: 5px;
+    font-size: 1.5em;
+    border-radius: 50%;
+  }
+
+.move-screen-warp-item:hover {
+  background-color: #333;
+}
+
+.warp-to-input {
+    background-color: #333;
+    color: #fff;
+    padding: 5px;
+    margin: 15px;
+    border: 0;
+    font-size: 1.5em;
+    font-family: "Saira Extra Condensed";
+}
+
+.nav-comp-title {
+    font-weight: normal;
+    font-size: 2.5em;
+}
+
+.nav-icon {
+    width: 40px;
+}
+
+.commodity-icon {
+    max-height: 32px;
+    margin: 2px;
+}
+
+.port-buys-ore {
+
+}
+
+.port-buys {
+    display: flex;
+    flex-direction: row;
+}
+
+.port-sells {
+    display: flex;
+    flex-direction: row;
+}
+
+.port-buys-icon {
+    border-color: #fff;
+    border-style: solid;
+    border-width: 2px;
+    border-radius: 12px;
+    min-width: 36px;
+    height: 36px;
+    text-align: center;
+    margin: 5px; 
+    padding: 5px;   
+}
+
+.port-trades-chart {
+    margin-left: auto;
+    margin-right: auto;
+    padding: 10px;
+    width: 35%;
+}
+
+.icon-visible {
+    opacity: 1;
+}
+
+.icon-invisible {
+    opacity: 0.2;
+}
+
+.stats-icon {
+    width: 48px;
+}
+
+.stats-icon-img {
+    width: 36px;
+}
+
+.user-stats {
+    display: flex;
+    flex-direction: row;
+}
+
+.player-turns {
+  display: flex;
+  flex-direction: row;
+}
+
+.player-exp {
+  display: flex;
+  flex-direction: row;
+}
+
+.port-trade-icon, .port-attack-icon, .port-rob-icon {
+    width: 48px;
+}
+
+.port-trade-action, .port-attack-action, .port-rob-action {
+   width: 48px;
+   margin: 15px;
+}
+
+.port-actions {
+    display: flex;
+    flex-direction: row;
+    width: 100%;
+    justify-content: center;
+}
+
+.engine-stats {
+    text-align: left;
+    list-style-type: none;
+    text-transform: uppercase;
+}
+
+.screen-footer {
+    position: absolute;
+    bottom: 0;
+    right: 0;
+    padding-right: 5px;
+}
+
+.sector {
+    margin: 20px;
+}
+
+.port-trades-ore {
+    width: 48px;
     padding: 5px;
 }
+
+.port-trades-organics {
+    max-height: 50px;
+    padding: 5px;
+}
+
+.port-trades-equipment {
+    width: 48px;
+    padding: 5px;
+}
+
+.user-stats-value {
+    color: lightblue;
+    display: inline;
+}
+
+.player-avatar {
+    width: 64px;
+    height: 64px;
+    background-color: #000;
+    border-width: 1px;
+    border-color: #fff;
+}
+
+.player-rank-icon {
+    width: 16px;
+    padding-right: 5px;
+}
+
+.port-buys-label, .port-sells-label {
+  text-align: left;
+}
+
+.warps-title {
+  display: inline;
+}
+
+.turns--bounce {
+    font-size: 1.1em;
+    animation: turns-keyframes--bounce .4s ease-out
+  }
+  @keyframes turns-keyframes--bounce {
+    0%,
+    to {
+      transform: rotate(0)
+    }
+    10% {
+      transform: scale(1.1)
+    }
+    20% {
+      transform: rotate(4deg) translateY(-12px)
+    }
+    40% {
+      transform: rotate(2deg) translateY(0)
+    }
+    60% {
+      transform: rotate(-2deg) translateY(-8px)
+    }
+    80% {
+      transform: rotate(-1deg) translateY(0)
+    }
+  }
