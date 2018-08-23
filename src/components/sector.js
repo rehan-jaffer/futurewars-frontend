@@ -4,13 +4,14 @@ import organics from '../assets/organics.png';
 import equipment from '../assets/equipment.png';
 import rank from '../assets/rank.png';
 import fighter from '../assets/fighter.png';
+import Typist from 'react-typist';
 
 export const Players = (props) => {
     if (!props.players) {
         return (<div />);
     }
     return props.players.map((player) => (
-        <div class="player-item">
+        <div class="player-item" key={player.username}>
         <div className="player-avatar"></div>
         <div class="player-rank">
           <img src = {rank} className="player-rank-icon" />
@@ -46,12 +47,33 @@ export const Port = (props) => {
     }
 
     return (<div className="port-display">
-      <div className="port-name">{props.port.name}</div>
-      <div className="port-class">Class {props.port.port_class}</div>
+       <div className="port-banner">
+        <div className="port-name">
+          {props.port.name}
+        </div>
+      </div>
       <div className="port-trade-string">
-        <img src = {ore} class="port-trades-ore" />
-        <img src = {organics} class="port-trades-organics" />
-        <img src = {equipment} class="port-trades-equipment" />
+          <div className="commodities-trading">
+          (Class {props.port.port_class})
+            <div className="commodity-line">
+              FUEL ORE 
+              <div className="trading-type">
+                [ BUYING ]
+              </div>
+            </div>
+            <div className="commodity-line">
+              ORGANICS 
+              <div className="trading-type">
+                [ BUYING ]
+              </div>
+            </div>
+            <div className="commodity-line">
+              EQUIPMENT 
+              <div className="trading-type">
+                [ BUYING ]
+              </div>
+            </div>
+          </div>
       </div>
     </div>)
 }

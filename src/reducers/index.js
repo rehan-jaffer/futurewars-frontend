@@ -2,8 +2,29 @@ import { combineReducers } from 'redux';
 import { SSL_OP_ALLOW_UNSAFE_LEGACY_RENEGOTIATION } from 'constants';
 
 const initialState = {
-
+  
 };
+
+const initialEngineState = {
+  status: "idle"
+};
+
+const screensInitialState = {
+  "move": false,
+  "port": false,
+  "trade": false
+}
+
+const engineReducer = (state = initialEngineState, action) => {
+  switch(action.type) {
+    case "TRIGGER_WARP_ANIMATION":
+    return {status: "ACTIVE"};
+    case "TERMINATE_WARP_ANIMATION":
+      return {status: "IDLE"};
+    default:
+      return state;
+  }
+}
 
 // const rootReducer = (state = initialState, action) => state;
 
@@ -11,6 +32,15 @@ const currentSectorReducer = (state = initialState, action) => {
   switch(action.type) {
     case "SECTOR_SUCCESS":
       return action.payload.sector;
+    default:
+      return state;
+  }
+}
+
+const screenVisibilityReducer = (state = screensInitialState, action) => {
+  switch (action.type) {
+    case "TOGGLE_SCREEN_VISIBILITY":
+      return Object.assign(state, {[action.payload.screen]: !state[action.payload.screen]});
     default:
       return state;
   }
@@ -43,6 +73,11 @@ const authReducer = (state = initialState, action) => {
   }
 };
 
-const rootReducer = combineReducers({auth_token: authReducer, current_sector: currentSectorReducer, user: PlayerInfoReducer, path: ExpressPathReducer});
+const rootReducer = combineReducers({auth_token: authReducer, 
+                                     current_sector: currentSectorReducer, 
+                                     user: PlayerInfoReducer, 
+                                     path: ExpressPathReducer, 
+                                     engine: engineReducer,
+                                     screens: screenVisibilityReducer});
 
 export default rootReducer;

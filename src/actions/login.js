@@ -5,7 +5,28 @@ const headers = (token) => {
    });
 };
 
-const API_URL = "http://localhost:21000/api"
+const API_URL = "http://localhost:21000/api";
+
+export function trigger_warp_animation() {
+  return (dispatch, getState) => {
+    (setTimeout(() => { 
+      dispatch(terminate_warp_animation());
+     }, 1500))
+     dispatch(start_warp_animation());
+  }
+}
+
+export function start_warp_animation() {
+  return {type: "TRIGGER_WARP_ANIMATION"};
+}
+
+export function terminate_warp_animation() {
+  return {type: "TERMINATE_WARP_ANIMATION"}
+}
+
+export function toggle_visibility(screen) {
+     return {type: "TOGGLE_SCREEN_VISIBILITY", payload: {screen: screen}};
+}
 
 export function fetch_with_auth(url, options, getState) {
   return fetch((API_URL + url), {...options, headers: headers(getState().auth_token)});
@@ -40,8 +61,7 @@ export function express_warp_path(sector_id) {
       .then((res) => res)
       .then((res) => res.json())
       .then((path) => { 
-          dispatch(express_warp_path_success(path))
-        console.log(path); 
+        dispatch(express_warp_path_success(path))
       }
     );
   }
@@ -50,13 +70,13 @@ export function express_warp_path(sector_id) {
 
 export function warp_to(sector_id) {
   return (dispatch, getState) => {
-    console.log(sector_id);
     return fetch_with_auth("/player/move", {method: 'post', body: "id=" + sector_id }, getState)
       .then((res) => res)
       .then((res) => res.json())
       .then((sector) => {
           dispatch(current_sector(sector));
           dispatch(get_player_info());
+          dispatch(trigger_warp_animation());
         }
       )
     }

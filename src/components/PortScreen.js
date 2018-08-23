@@ -1,21 +1,30 @@
 import React, { Component } from 'react';
 import PortTradesChart from './PortTradesChart'
+import TradeScreen from './TradeScreen';
 import trade from '../assets/trade.png';
 import attack from '../assets/attack.png';
 import rob from '../assets/rob.png';
+import { connect } from 'react-redux';
 
-export default class PortScreen extends Component {
+class PortScreen extends Component {
   constructor(props) {
     super(props);
   }
 
+  visibility_class(visible) {
+    if (visible) {
+      return "visible";
+    }
+  }
+
+
   render() {
-      console.log(this.props);
-      if (this.props.visible == false) {
+      
+      if (this.props.visible == false || !this.props.port.port) {
           return (<div />)
       }
 
-      return (<div className="screen">
+      return (<div className={"screen " + this.visibility_class(this.props.visible)}>
               <div className = "port-name-title">
                 {this.props.port.port.name}
               </div>
@@ -41,3 +50,11 @@ export default class PortScreen extends Component {
   }
 
 }
+
+const mapStateToProps = (state) => {
+  return {
+    screens: state.screens
+  }
+}
+
+export default connect(mapStateToProps, null)(PortScreen);

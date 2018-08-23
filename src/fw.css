@@ -1,0 +1,12 @@
+.radar {
+  display: flex;
+  align-items: center;
+  justify-content: center; }
+
+.radar-fighter {
+  width: 32px;
+  border-width: 2px;
+  border-color: #ccc;
+  border-style: solid;
+  border-radius: 50%;
+  padding: 10px; }

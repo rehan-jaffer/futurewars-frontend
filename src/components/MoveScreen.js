@@ -4,10 +4,23 @@ import NavIcon from "../assets/navigation.png";
 export default class MoveScreen extends Component {
   constructor(props) {
     super(props);
+    this.handleSubmit = this.handleSubmit.bind(this);
+    this.handleChange = this.handleChange.bind(this)
+    this.state = {};
+  }
+
+  handleChange(event) {
+    this.setState({value: event.target.value})
+  }
+
+  handleSubmit(event) {
+    event.preventDefault();
+    this.props.express_warp_path(this.state.value);
   }
 
   render() {
-      if (this.props.visible == false) {
+    
+          if (this.props.visible == false || !this.props.warps.warps) {
           return (<div />)
       }
 
@@ -25,7 +38,10 @@ export default class MoveScreen extends Component {
                 })}
                 </div>
                 <div className="move-screen-warp-to">
-                  <input type="text" name="warp-to" className="warp-to-input" autoFocus={true} onClick={(event) => { this.props.express_warp_path(event.target.value); }} />
+                  <form onSubmit={this.handleSubmit}>
+                    <input type="text" name="warp-to" className="warp-to-input" autoFocus={true} onChange={this.handleChange} />
+                    <button type="submit" />
+                  </form>
                 </div>
                 <div className="screen-footer">
                 Press Q to Exit
