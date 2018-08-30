@@ -6,7 +6,9 @@ import hazard from '../assets/hazard.png';
 import ship from '../assets/spaceship.png';
 import { connect } from 'react-redux';
 import Indicator from './Indicator';
-import Radar, { RadarPlayers } from './Radar';
+import Engine from './Engine';
+
+import Radar, { RadarPlayers, RadarFighter } from './Radar';
 
 const HardwareSegment = (props) => {
   return (<div className="hardware-display-segment">
@@ -15,9 +17,6 @@ const HardwareSegment = (props) => {
   </div>)
 }
 
-const RadarFighter = (props) => {
-  return (<img src = {ship} className={props.refreshing == false ? "radar-fighter" : "radar-fighter radar-ship-warping"} />)
-};
 
 export class ConsoleDisplay extends Component {
   
@@ -47,7 +46,8 @@ shield_stats() {
     return (<div className="console-info">
     <div className="bar-displays">
       <Indicator note={this.shield_stats()} percent={this.shield_percent()} />
-      <Indicator note={"Engine Coils"} percent="80" refreshing={this.props.engine_status} />
+      <Indicator note={"Engine Coils"} percent="80" refreshing={this.props.engine_status} stalled={this.props.engine_status} />
+
       <div class="navigation-displays">
         <HardwareSegment icon={hazard} count={this.props.nav_hazard + "%"} />   
       </div>
@@ -58,9 +58,7 @@ shield_stats() {
         <RadarFighter refreshing={this.props.engine_status == "ACTIVE"}/>
         <RadarPlayers players={this.props.players} />
       </div>
-      <div className={(this.props.engine_status == "IDLE") ? "engine" : "engine engine-active"}>
-      [ {this.props.engine_status} ]
-      </div>
+      <Engine engine_status={this.props.engine_status} />
     </div>
     <div className="text-display">
       <div className="console-line">

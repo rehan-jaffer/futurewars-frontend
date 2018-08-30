@@ -24,9 +24,13 @@ body {
     font-size: 1.2em;
     text-align: center;
     background-color: #333;
-    padding: 10px;
-    width: 60%;
-    margin: 10px;
+    padding: 5px;
+    width: 100%;
+    margin: 5px;
+    border-width: 0;
+    border-right-width: 5px;
+    border-color: #666;
+    border-style: solid;
 }
 
 .player-fighter-count {
@@ -119,7 +123,7 @@ body {
 }
 
 .player-ship-type {
-    padding: 25px;
+    padding: 10px;
 }
 
 .player-rank {
@@ -361,11 +365,13 @@ visible {
 .player-avatar {
     width: 64px;
     height: 64px;
-    background-color: #333;
-    border-radius: 10px;
+    background-color: #999;
+    border-radius: 5px;
     border-width: 2px;
     border-color: #aaa;
     border-style: solid;
+    background-image: url('assets/avatar.png');
+    background-size: cover;
 }
 
 .player-rank-icon {
@@ -571,9 +577,40 @@ visible {
     border-color: #aaa;
     border-style: solid;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
 }
 
 .engine {
+/*    border-width: 4px;
+    border-color: #ccc;
+    border-style: solid;
+*/
+    width: 100px;
+    height: 100px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position: relative;
+    background-color: none;
+    background-image: url('assets/engine.gif');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    position: absolute;
+    z-index: -1;
+    border-radius: 50%;
+}
+
+
+.engine-container {
     border-width: 4px;
     border-color: #ccc;
     border-style: solid;
@@ -586,31 +623,20 @@ visible {
     align-items: center;
     position: relative;
     background-color: none;
+    opacity: 1.0;
+}
+
+.engine-stalled {
+    opacity: 1.0;
+    filter: sepia(1) hue-rotate(320deg) blur(6px) brightness(300%);
+    background-size: contain;    
 }
 
 .engine-active {
     opacity: 1.0;
-    background-image: url('assets/engine.gif');
+    filter: sepia(1) hue-rotate(120deg) blur(4px) brightness(400%);
     background-size: contain;
-    background-position: center;
-    background-repeat: no-repeat;
 }
-
-.engine::after {
-    content: "";
-    background-image: url('assets/engine.gif');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    opacity: 0.4;
-    top: 0;
-    left: 0;
-    bottom: 0;
-    right: 0;
-    position: absolute;
-    z-index: -1;
-    border-radius: 50%;
-  }
 
 .bar-display-container {
     height: 50px;
@@ -643,6 +669,20 @@ visible {
 
 .bar-displays {
     width: 30%;
+}
+
+.stalled {
+    border-color: white;
+    background-color: #fff;
+    animation: engine-stall 1s;
+    animation-iteration-count: 1;
+}
+
+@keyframes engine-stall {
+  0% { width: 80% }
+  50% { width: 75% }
+  100% { width: 80% }
+
 }
 
 .circle-displays {
@@ -948,5 +988,129 @@ visible {
       z-index: -1;
   }
 
+  .radar-players {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 150px;
+    height: 150px;
+  }
+
   .ship-info-container {
   }
+
+  .warp-grid {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+  }
+
+  .warp-grid {
+      position: relative;
+      width: 300px;
+      height: 300px;
+      background-color: #111;
+      border-width: 2px;
+      border-color: #999;
+      border-style: solid;
+  }
+
+   .warp-origin {
+     font-size: 1.2em;
+     padding: 10px;
+     border-color: #fff;
+     border-radius: 50%;
+     border-style: solid;
+     border-width: 2px;
+     width: 50px;
+     height: 50px;
+     display: flex;
+     justify-content: center;
+     align-items: center;
+     position: absolute;
+     top: 150;
+     left: 150;
+   }
+
+  .warp-point {
+      position: absolute;
+      padding: 5px;
+      width: 30px;
+      height: 30px;
+      font-size: 1em;
+      border-color: lightBlue;
+      border-radius: 50%;
+      border-style: solid;
+      border-width: 2px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      animation: pulse 2s;
+      animation-iteration-count: infinite;
+      margin: auto;
+      text-align: center;
+      cursor: pointer;
+  }
+
+  @keyframes pulse {
+      0% { opacity: 1; }
+      50% { opacity: 0.8; }
+      100% { opacity: 1; }
+  }
+
+  .explored {
+      opacity: 0.8em;
+  }
+
+  .console-section {
+      display: flex;
+      flex-direction: row;
+      justify-content: space-between;
+      padding: 10px;
+    }
+
+  .planet-grid {
+      position: relative;
+      background-color: #111;
+      width: 320px;
+      height: 320px;
+      border-color: #aaa;
+      border-width: 1px;
+      border-style: solid;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+  }
+
+  .planet-grid-point {
+      position: absolute;
+      border-color: lightBlue;
+      border-style: solid;
+      border-width: 2px;
+      border-radius: 50%;
+      width: 60px;
+      height: 60px;
+      display: flex;
+      align-items: flex-start;
+      justify-content: center;
+  }
+
+  .planet-grid-point-label {
+      background-color: #111;
+      border-radius: 5px;
+      border-color: lightBlue;
+      border-width: 1px;
+      border-style: solid;
+      font-size: 0.6em;
+      font-family: "Insonsolata", monospace;
+      color: lightBlue;
+      padding: 2px;
+      margin-top: -10px;
+      margin-right: -10px;
+      margin-left: -10px;
+  }
+
+  .players-list {
+  }
+
+  

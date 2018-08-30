@@ -1,26 +1,27 @@
 import React, { Component } from 'react';
 
 const indicator_active = (refreshing) => {
-  if (!refreshing)
-    return "bar";
-  else
+  if (refreshing == "ACTIVE")
     return "bar refreshing";
+  else if (refreshing == "STALLED")
+    return "bar stalled";
+  else
+    return "bar";
 };
 
   
-  export default class Indicator extends Component {
-    constructor(props) {
-      super(props);
-    }
-    render() {
-      return (<div className="bar-display-container">
-      <div className="bar-display-chart">
-        <div className={indicator_active(this.props.refreshing == "ACTIVE")} style={{"width": this.props.percent + "%"}}>
-        </div>
-      </div>
-      <div className="bar-label">
-        {this.props.note}
-        </div>
-      </div>);
-    }
-  }
+const Indicator = (props) => {
+  const refreshing = (props.refreshing) ? props.refreshing.toLowerCase() : "active";
+
+  return (<div className={`bar-display-container`}>
+  <div className={`bar-display-chart`}>
+    <div className={indicator_active(refreshing)} style={{"width": props.percent + "%"}}>
+    </div>
+  </div>
+  <div className="bar-label">
+    {props.note}
+    </div>
+  </div>);
+};
+
+export default Indicator;

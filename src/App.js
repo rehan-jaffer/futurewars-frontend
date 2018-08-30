@@ -1,55 +1,37 @@
 import React, { Component } from 'react';
 import './App.css';
-import { login, current_sector, warp_to, get_player_info, express_warp_path, toggle_visibility } from './actions/login';
+import { current_sector, warp_to, get_player_info, express_warp_path } from './actions/api';
+import { login } from './actions/login'
 import { connect } from 'react-redux';
 import UserStats from './components/UserStats';
 import "./futurewars.css";
 import "./fw.css";
-import MoveScreen from './components/MoveScreen';
-import PortScreen from './components/PortScreen';
-import TradeScreen from './components/TradeScreen';
+
 import Console from './components/Console';
-import { BrowserRouter as Router, Route } from 'react-router-dom'
-import { Provider } from 'react-redux';
+
 
 class App extends Component {
   constructor(props) {
     super(props);
-    this.state = {move_screen: false, port_screen: false, trade_screen: false};
+    this.state = {};
   }
 
   componentWillReceiveProps() {
   }
 
   componentWillMount() {
-    let self = this;
-
-    this.props.onLoader("ray", "testpassword");
-
-    this.listener = new window.keypress.Listener();
-
-    this.listener.simple_combo("m", function() {
-      self.setState({move_screen: !self.state.move_screen})
-    });
-    this.listener.simple_combo("p", function() {
-      self.setState({port_screen: !self.state.port_screen})
-    });
-
-    this.listener.simple_combo("t", function() {
-      self.setState({trade_screen: !self.state.trade_screen})
-    });
- 
+    this.props.onLoader("ray", "testpassword"); 
   }
 
   render() {
+
+    if (!this.props.user || !this.props.current_sector)
+      return (<div />);
 
     return (
       <div className="console">
         <UserStats user={this.props.user} />
         <Console sector={this.props.current_sector} warp_function={this.props.warpTo} user={this.props.user} />
-        <TradeScreen visible={this.state.trade_screen} port={this.props.current_sector}/>
-        <MoveScreen visible={this.state.move_screen} warps={this.props.current_sector} express_warp_path={this.props.getWarpPath} key={this.props.current_sector.id} />
-        <PortScreen visible={this.state.port_screen} port={this.props.current_sector} />
     </div>);
 
   }
@@ -68,9 +50,6 @@ const mapDispatchToProps = dispatch => {
       },
       getWarpPath: (sector_id) => {
         dispatch(express_warp_path(sector_id))
-      },
-      toggleVisibility: (screen) => {
-        dispatch(toggle_visibility(screen));
       }
     }
 }

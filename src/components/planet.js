@@ -1,4 +1,5 @@
 import React, { Component } from 'react';
+import shape_list from '../points';
 
 export const Planets = (props) => {
     if (!props.planets)
@@ -18,3 +19,18 @@ export const Planets = (props) => {
       }) } 
     </div>)
 }
+
+export const PlanetGrid = (props) => {
+  let points = shape_list(100, 50, props.planets.length);
+  return (<div className="planet-grid">
+       [ PLANET SCANNER ]
+       { props.planets.map((planet, index) => {
+      return (<div className="planet-grid-point" key={planet.name} style={{top: points[index][0], left: points[index][1]}}>
+        <div className="planet-grid-point-label">{planet.name} <span className="planet-grid-point-classification">{planet.classification}</span></div>
+      </div>)
+    }) } 
+  </div>)
+}
+
+
+export default {Planets, PlanetGrid};

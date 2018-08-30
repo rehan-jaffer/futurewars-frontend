@@ -18,9 +18,11 @@ const screensInitialState = {
 const engineReducer = (state = initialEngineState, action) => {
   switch(action.type) {
     case "TRIGGER_WARP_ANIMATION":
-    return {status: "ACTIVE"};
+      return {status: "ACTIVE"};
     case "TERMINATE_WARP_ANIMATION":
       return {status: "IDLE"};
+    case "WARP_ERROR":
+      return {status: "STALLED"};
     default:
       return state;
   }
@@ -35,6 +37,15 @@ const currentSectorReducer = (state = initialState, action) => {
     default:
       return state;
   }
+}
+
+const errorReducer = (state = initialState, action) => {
+    switch(action.type) {
+      case "ERROR_NOTIFICATION":
+        return action.payload;
+      default:
+        return state;
+    }
 }
 
 const screenVisibilityReducer = (state = screensInitialState, action) => {
@@ -78,6 +89,7 @@ const rootReducer = combineReducers({auth_token: authReducer,
                                      user: PlayerInfoReducer, 
                                      path: ExpressPathReducer, 
                                      engine: engineReducer,
-                                     screens: screenVisibilityReducer});
+                                     screens: screenVisibilityReducer,
+                                     errors: errorReducer});
 
 export default rootReducer;

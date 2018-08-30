@@ -1,0 +1,10 @@
+export const UserConstants = {
+    LOGIN_REQUEST: "LOGIN_REQUEST",
+    LOGIN_SUCCESS: "LOGIN_SUCCESS",
+    LOGIN_FAILURE: "LOGIN_FAILURE"
+};
+
+export const SectorConstants = {
+    SECTOR_SUCCESS: "SECTOR_SUCCESS",
+    SECTOR_FAILURE: "SECTOR_FAILURE"
+}

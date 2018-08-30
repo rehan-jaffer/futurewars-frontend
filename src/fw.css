@@ -10,3 +10,21 @@
   border-style: solid;
   border-radius: 50%;
   padding: 10px; }
+
+.help-boxes {
+  display: flex;
+  flex-direction: row;
+  margin: auto;
+  justify-content: center; }
+  .help-boxes li {
+    margin: 5px;
+    width: 200px;
+    height: 200px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-width: 2px;
+    border-color: #fff;
+    border-style: solid;
+    font-size: 2em;
+    background-color: #222; }
